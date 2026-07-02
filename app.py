@@ -32,35 +32,46 @@ def inject_custom_css():
         <style>
         .stApp {
             background:
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 24%),
-                radial-gradient(circle at top right, rgba(168, 85, 247, 0.14), transparent 28%),
-                linear-gradient(180deg, #0b1020 0%, #111827 52%, #0f172a 100%);
+                radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 24%),
+                radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 28%),
+                linear-gradient(180deg, #f8fbff 0%, #f3f7fb 52%, #eef4f8 100%);
         }
         [data-testid="stSidebar"] {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.96));
-            border-right: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(255, 255, 255, 0.82);
+            border-right: 1px solid rgba(148, 163, 184, 0.14);
+            backdrop-filter: blur(10px);
         }
         [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
         [data-testid="stSidebar"] label,
         [data-testid="stSidebar"] .stRadio label {
-            color: #e5eefb;
+            color: #334155;
+        }
+        [data-testid="stSidebar"] .stRadio > div {
+            gap: 0.3rem;
+        }
+        [data-testid="stSidebar"] [role="radiogroup"] label {
+            padding: 0.35rem 0.5rem;
+            border-radius: 10px;
+        }
+        [data-testid="stSidebar"] [role="radiogroup"] label:hover {
+            background: rgba(59, 130, 246, 0.08);
         }
         .main .block-container {
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
         .hero-card {
-            padding: 1.4rem 1.5rem;
-            border: 1px solid rgba(148, 163, 184, 0.16);
+            padding: 1.15rem 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
             border-radius: 24px;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.86), rgba(30, 41, 59, 0.72));
-            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92));
+            box-shadow: 0 18px 42px rgba(148, 163, 184, 0.16);
             backdrop-filter: blur(10px);
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             animation: floatUp 0.7s ease-out;
         }
         .hero-kicker {
-            color: #38bdf8;
+            color: #2563eb;
             font-size: 0.86rem;
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -68,34 +79,34 @@ def inject_custom_css():
             margin-bottom: 0.5rem;
         }
         .hero-title {
-            color: #f8fafc;
-            font-size: 2rem;
+            color: #0f172a;
+            font-size: 1.45rem;
             font-weight: 800;
             line-height: 1.15;
             margin: 0;
         }
         .hero-subtitle {
             color: #cbd5e1;
-            font-size: 0.98rem;
-            margin-top: 0.65rem;
+            font-size: 0.9rem;
+            margin-top: 0.45rem;
             margin-bottom: 0;
         }
         .hero-badges {
             display: flex;
             flex-wrap: wrap;
             gap: 0.6rem;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.45rem;
-            padding: 0.5rem 0.8rem;
+            padding: 0.42rem 0.72rem;
             border-radius: 999px;
             border: 1px solid rgba(148, 163, 184, 0.18);
-            background: rgba(15, 23, 42, 0.72);
-            color: #e2e8f0;
-            font-size: 0.85rem;
+            background: #ffffff;
+            color: #334155;
+            font-size: 0.78rem;
             font-weight: 600;
         }
         .hero-badge-dot {
@@ -111,10 +122,10 @@ def inject_custom_css():
             padding: 1.2rem;
             border-radius: 22px;
             border: 1px solid rgba(148, 163, 184, 0.15);
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.6));
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
-            min-height: 140px;
-            margin-bottom: 1rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
+            box-shadow: 0 16px 34px rgba(148, 163, 184, 0.14);
+            min-height: 122px;
+            margin-bottom: 0.85rem;
             animation: floatUp 0.85s ease-out;
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
@@ -125,28 +136,24 @@ def inject_custom_css():
             width: 110px;
             height: 110px;
             border-radius: 999px;
-            background: rgba(56, 189, 248, 0.14);
+            background: rgba(59, 130, 246, 0.10);
             filter: blur(2px);
         }
         .summary-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.28);
+            box-shadow: 0 20px 40px rgba(148, 163, 184, 0.18);
         }
         .summary-label {
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            margin-bottom: 0.7rem;
+            color: #64748b;
+            font-size: 0.82rem;
+            margin-bottom: 0.45rem;
         }
         .summary-value {
-            color: #f8fafc;
-            font-size: 1.85rem;
+            color: #0f172a;
+            font-size: 1.65rem;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-        .summary-foot {
-            color: #94a3b8;
-            font-size: 0.86rem;
+            margin-bottom: 0.2rem;
         }
         .summary-income {
             border-color: rgba(34, 197, 94, 0.28);
@@ -158,34 +165,29 @@ def inject_custom_css():
             border-color: rgba(56, 189, 248, 0.3);
         }
         .section-card {
-            padding: 1.15rem;
+            padding: 1rem;
             border-radius: 24px;
             border: 1px solid rgba(148, 163, 184, 0.16);
-            background: rgba(15, 23, 42, 0.72);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 14px 34px rgba(148, 163, 184, 0.12);
             height: 100%;
             animation: floatUp 1s ease-out;
         }
         .section-title {
-            color: #f8fafc;
-            font-size: 1.3rem;
+            color: #0f172a;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.35rem;
-        }
-        .section-subtitle {
-            color: #94a3b8;
-            font-size: 0.92rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         .mobile-note {
             display: none;
-            margin-bottom: 0.85rem;
-            padding: 0.75rem 0.9rem;
+            margin-bottom: 0.7rem;
+            padding: 0.6rem 0.8rem;
             border-radius: 14px;
-            background: rgba(56, 189, 248, 0.14);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            color: #dbeafe;
-            font-size: 0.85rem;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.12);
+            color: #2563eb;
+            font-size: 0.8rem;
         }
         div[data-testid="stForm"] {
             border: 0;
@@ -196,7 +198,7 @@ def inject_custom_css():
         div[data-testid="stNumberInput"] input,
         div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
             border-radius: 14px;
-            background: rgba(15, 23, 42, 0.92);
+            background: #ffffff;
         }
         div[data-testid="stNumberInput"] button,
         div[data-testid="stFormSubmitButton"] button {
@@ -217,6 +219,7 @@ def inject_custom_css():
             border-radius: 18px;
             overflow: hidden;
             border: 1px solid rgba(148, 163, 184, 0.16);
+            background: white;
         }
         @keyframes floatUp {
             from {
@@ -240,10 +243,10 @@ def inject_custom_css():
                 border-radius: 18px;
             }
             .hero-title {
-                font-size: 1.55rem;
+                font-size: 1.2rem;
             }
             .summary-value {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
             }
             .hero-badges {
                 gap: 0.45rem;
@@ -269,13 +272,11 @@ def render_hero_section(jumlah_transaksi):
     st.markdown(
         f"""
         <div class="hero-card">
-            <div class="hero-kicker">Smart Home Finance Dashboard</div>
-            <h1 class="hero-title">SKY HOME tampil lebih modern, rapi, dan nyaman di desktop maupun HP</h1>
-            <p class="hero-subtitle">Kelola pemasukan, pengeluaran, dan pantau saldo rumah tangga dari satu dashboard yang responsif.</p>
+            <div class="hero-kicker">SKY HOME</div>
+            <h1 class="hero-title">Dashboard Keuangan Rumah</h1>
             <div class="hero-badges">
-                <div class="hero-badge"><span class="hero-badge-dot"></span>API aktif dan siap sinkron</div>
-                <div class="hero-badge">📊 {jumlah_transaksi} transaksi tercatat</div>
-                <div class="hero-badge">📱 Optimal untuk layar mobile</div>
+                <div class="hero-badge"><span class="hero-badge-dot"></span>Online</div>
+                <div class="hero-badge">📊 {jumlah_transaksi} transaksi</div>
             </div>
         </div>
         """,
@@ -283,11 +284,10 @@ def render_hero_section(jumlah_transaksi):
     )
 
 
-def render_section_header(title, subtitle):
+def render_section_header(title):
     st.markdown(
         f"""
         <div class="section-title">{title}</div>
-        <div class="section-subtitle">{subtitle}</div>
         """,
         unsafe_allow_html=True,
     )
@@ -326,18 +326,17 @@ def hitung_ringkasan(df_keuangan):
 def render_ringkasan(total_masuk, total_keluar, saldo_akhir):
     col1, col2, col3 = st.columns(3)
     cards = [
-        (col1, "summary-card summary-income", "Total Pemasukan", format_rupiah(total_masuk), "Arus kas masuk rumah tangga"),
-        (col2, "summary-card summary-expense", "Total Pengeluaran", format_rupiah(total_keluar), "Belanja dan kebutuhan rutin"),
-        (col3, "summary-card summary-balance", "Sisa Saldo", format_rupiah(saldo_akhir), "Posisi saldo yang tersedia saat ini"),
+        (col1, "summary-card summary-income", "Total Pemasukan", format_rupiah(total_masuk)),
+        (col2, "summary-card summary-expense", "Total Pengeluaran", format_rupiah(total_keluar)),
+        (col3, "summary-card summary-balance", "Sisa Saldo", format_rupiah(saldo_akhir)),
     ]
 
-    for column, card_class, label, value, foot in cards:
+    for column, card_class, label, value in cards:
         column.markdown(
             f"""
             <div class="{card_class}">
                 <div class="summary-label">{label}</div>
                 <div class="summary-value">{value}</div>
-                <div class="summary-foot">{foot}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -345,7 +344,7 @@ def render_ringkasan(total_masuk, total_keluar, saldo_akhir):
 
 
 def render_form_transaksi():
-    st.markdown('<div class="mobile-note">Mode mobile aktif. Form dibuat lebih ringkas agar input nominal dan keterangan tetap nyaman di layar kecil.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="mobile-note">Mode mobile aktif.</div>', unsafe_allow_html=True)
     with st.form("form_keuangan", clear_on_submit=True):
         jenis = st.selectbox("Jenis", ["Pemasukan", "Pengeluaran"])
         nominal = st.number_input("Nominal (Rp)", min_value=0, step=1000)
@@ -378,7 +377,7 @@ def render_tabel_transaksi(df_keuangan):
         st.info("Belum ada riwayat transaksi.")
         return
 
-    st.markdown('<div class="mobile-note">Riwayat transaksi dibuat fleksibel. Di HP, fokus utama ada pada nominal dan keterangan agar lebih mudah dipantau.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="mobile-note">Tampilan ringkas untuk mobile.</div>', unsafe_allow_html=True)
     df_tampil = df_keuangan.iloc[::-1].copy()
     if "Nominal" in df_tampil.columns:
         df_tampil["Nominal"] = pd.to_numeric(df_tampil["Nominal"], errors="coerce").fillna(0)
@@ -391,9 +390,7 @@ inject_custom_css()
 # --- SIDEBAR ---
 with st.sidebar:
     st.title("🏠 SKY HOME")
-    st.write("Sistem Manajemen Rumah")
-    st.markdown("---")
-    st.caption("Status: Terhubung via Web App API 🟢")
+    st.caption("Sistem Manajemen Rumah")
     menu_pilihan = st.radio("Navigasi", ["💰 Keuangan", "📦 Stok Barang", "📋 Catatan"])
 
 if menu_pilihan == "💰 Keuangan":
@@ -408,13 +405,13 @@ if menu_pilihan == "💰 Keuangan":
 
     with col_form:
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        render_section_header("📝 Input Transaksi", "Tambah transaksi baru dengan cepat dari desktop maupun layar HP.")
+        render_section_header("📝 Input Transaksi")
         render_form_transaksi()
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col_tabel:
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        render_section_header("📋 Riwayat Transaksi", "Pantau histori transaksi terbaru dengan tampilan yang lebih bersih.")
+        render_section_header("📋 Riwayat Transaksi")
         render_tabel_transaksi(df_keuangan)
         st.markdown('</div>', unsafe_allow_html=True)
 
