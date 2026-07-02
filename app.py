@@ -33,163 +33,224 @@ def inject_custom_css():
         .stApp {
             background-color: var(--background-color);
             background-image:
-                radial-gradient(circle at top left, color-mix(in srgb, var(--primary-color) 12%, transparent), transparent 24%),
-                radial-gradient(circle at top right, color-mix(in srgb, var(--primary-color) 8%, transparent), transparent 28%);
+                radial-gradient(circle at top left, color-mix(in srgb, var(--primary-color) 15%, transparent), transparent 30%),
+                radial-gradient(circle at top right, color-mix(in srgb, #8b5cf6 12%, transparent), transparent 35%),
+                radial-gradient(circle at bottom left, color-mix(in srgb, #3b82f6 10%, transparent), transparent 40%);
+            background-attachment: fixed;
         }
         [data-testid="stSidebar"] {
-            background: color-mix(in srgb, var(--secondary-background-color) 85%, transparent);
-            border-right: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
-            backdrop-filter: blur(10px);
+            background: color-mix(in srgb, var(--secondary-background-color) 60%, transparent);
+            border-right: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
         [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
         [data-testid="stSidebar"] label,
         [data-testid="stSidebar"] .stRadio label {
             color: var(--text-color);
+            font-weight: 500;
         }
         [data-testid="stSidebar"] .stRadio > div {
-            gap: 0.3rem;
+            gap: 0.4rem;
         }
         [data-testid="stSidebar"] [role="radiogroup"] label {
-            padding: 0.35rem 0.5rem;
-            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
         [data-testid="stSidebar"] [role="radiogroup"] label:hover {
-            background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+            background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+            transform: translateX(4px);
         }
         .main .block-container {
             padding-top: 2rem;
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
         }
         .hero-card {
-            padding: 1.15rem 1.25rem;
-            border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
-            border-radius: 24px;
-            background: color-mix(in srgb, var(--secondary-background-color) 90%, transparent);
-            box-shadow: 0 18px 42px color-mix(in srgb, var(--text-color) 6%, transparent);
-            backdrop-filter: blur(10px);
-            margin-bottom: 0.85rem;
-            animation: floatUp 0.7s ease-out;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem 1.75rem;
+            border: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+            border-radius: 28px;
+            background: linear-gradient(145deg, color-mix(in srgb, var(--secondary-background-color) 85%, transparent), color-mix(in srgb, var(--background-color) 60%, transparent));
+            box-shadow: 
+                0 10px 30px -10px color-mix(in srgb, var(--text-color) 10%, transparent),
+                inset 0 1px 0 color-mix(in srgb, #ffffff 20%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            margin-bottom: 1.25rem;
+            animation: floatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), #8b5cf6, #3b82f6);
+            opacity: 0.8;
         }
         .hero-kicker {
             color: var(--primary-color);
-            font-size: 0.86rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .hero-title {
             color: var(--text-color);
-            font-size: 1.45rem;
+            font-size: 1.75rem;
             font-weight: 800;
-            line-height: 1.15;
+            line-height: 1.2;
             margin: 0;
+            letter-spacing: -0.02em;
         }
         .hero-subtitle {
             color: var(--text-color);
-            opacity: 0.85;
-            font-size: 0.9rem;
-            margin-top: 0.45rem;
+            opacity: 0.7;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
             margin-bottom: 0;
+            max-width: 600px;
+            line-height: 1.5;
         }
         .hero-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.8rem;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
         }
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.42rem 0.72rem;
+            gap: 0.5rem;
+            padding: 0.4rem 0.85rem;
             border-radius: 999px;
-            border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
-            background: var(--background-color);
+            border: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
+            background: color-mix(in srgb, var(--background-color) 50%, transparent);
             color: var(--text-color);
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px color-mix(in srgb, var(--text-color) 4%, transparent);
         }
         .hero-badge-dot {
-            width: 0.55rem;
-            height: 0.55rem;
+            width: 0.5rem;
+            height: 0.5rem;
             border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.14);
+            background: #10b981;
+            box-shadow: 0 0 0 4px color-mix(in srgb, #10b981 20%, transparent);
+            animation: pulse 2s infinite;
         }
         .summary-card {
             position: relative;
             overflow: hidden;
-            padding: 1.2rem;
-            border-radius: 22px;
-            border: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
-            background: color-mix(in srgb, var(--secondary-background-color) 90%, transparent);
-            box-shadow: 0 16px 34px color-mix(in srgb, var(--text-color) 5%, transparent);
-            min-height: 122px;
-            margin-bottom: 0.85rem;
-            animation: floatUp 0.85s ease-out;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            padding: 1.5rem;
+            border-radius: 24px;
+            border: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--secondary-background-color) 80%, transparent), color-mix(in srgb, var(--background-color) 60%, transparent));
+            box-shadow: 
+                0 12px 30px -10px color-mix(in srgb, var(--text-color) 8%, transparent),
+                inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+            min-height: 130px;
+            margin-bottom: 1.25rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: floatUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .summary-card::after {
             content: "";
             position: absolute;
-            inset: auto -20px -36px auto;
-            width: 110px;
-            height: 110px;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
             border-radius: 999px;
-            background: color-mix(in srgb, var(--primary-color) 10%, transparent);
-            filter: blur(2px);
+            background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+            filter: blur(20px);
+            z-index: 0;
+            transition: all 0.4s ease;
         }
         .summary-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px color-mix(in srgb, var(--text-color) 8%, transparent);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 
+                0 20px 40px -15px color-mix(in srgb, var(--text-color) 12%, transparent),
+                inset 0 1px 0 color-mix(in srgb, #ffffff 25%, transparent);
+            border-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+        }
+        .summary-card:hover::after {
+            background: color-mix(in srgb, var(--primary-color) 15%, transparent);
+            transform: scale(1.2);
+        }
+        .summary-content {
+            position: relative;
+            z-index: 1;
         }
         .summary-label {
             color: var(--text-color);
-            opacity: 0.8;
-            font-size: 0.82rem;
-            margin-bottom: 0.45rem;
+            opacity: 0.7;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
         }
         .summary-value {
             color: var(--text-color);
-            font-size: 1.65rem;
+            font-size: 1.85rem;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
         }
         .summary-income {
-            border-color: color-mix(in srgb, #22c55e 35%, transparent);
+            border-left: 4px solid #10b981;
         }
         .summary-expense {
-            border-color: color-mix(in srgb, #f87171 35%, transparent);
+            border-left: 4px solid #ef4444;
         }
         .summary-balance {
-            border-color: color-mix(in srgb, var(--primary-color) 35%, transparent);
+            border-left: 4px solid var(--primary-color);
         }
         .section-card {
-            padding: 1rem;
-            border-radius: 24px;
-            border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
-            background: color-mix(in srgb, var(--secondary-background-color) 80%, transparent);
-            box-shadow: 0 14px 34px color-mix(in srgb, var(--text-color) 4%, transparent);
+            padding: 1.5rem;
+            border-radius: 28px;
+            border: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+            background: color-mix(in srgb, var(--secondary-background-color) 70%, transparent);
+            box-shadow: 
+                0 15px 35px -15px color-mix(in srgb, var(--text-color) 8%, transparent),
+                inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
             height: 100%;
-            animation: floatUp 1s ease-out;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: floatUp 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .section-title {
             color: var(--text-color);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
         }
         .mobile-note {
             display: none;
-            margin-bottom: 0.7rem;
-            padding: 0.6rem 0.8rem;
-            border-radius: 14px;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
             background: color-mix(in srgb, var(--primary-color) 8%, transparent);
-            border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-color) 15%, transparent);
             color: var(--primary-color);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         div[data-testid="stForm"] {
             border: 0;
@@ -199,40 +260,65 @@ def inject_custom_css():
         div[data-testid="stTextInput"] input,
         div[data-testid="stNumberInput"] input,
         div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-            border-radius: 14px;
-            background: var(--background-color);
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--background-color) 80%, transparent);
             color: var(--text-color);
+            border: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
         }
-        div[data-testid="stNumberInput"] button,
-        div[data-testid="stFormSubmitButton"] button {
-            border-radius: 14px;
+        div[data-testid="stTextInput"] input:focus,
+        div[data-testid="stNumberInput"] input:focus,
+        div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+            background: var(--background-color);
+        }
+        div[data-testid="stNumberInput"] button {
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--text-color) 5%, transparent);
         }
         div[data-testid="stFormSubmitButton"] button {
-            min-height: 3rem;
-            background: var(--primary-color);
+            border-radius: 16px;
+            min-height: 3.25rem;
+            background: linear-gradient(135deg, var(--primary-color), #6366f1);
             color: white;
             font-weight: 700;
+            font-size: 1rem;
             border: 0;
-            box-shadow: 0 10px 25px color-mix(in srgb, var(--primary-color) 30%, transparent);
+            box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--primary-color) 40%, transparent);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
         }
         div[data-testid="stFormSubmitButton"] button:hover {
-            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px color-mix(in srgb, var(--primary-color) 50%, transparent);
+            filter: brightness(1.05);
+        }
+        div[data-testid="stFormSubmitButton"] button:active {
+            transform: translateY(1px);
         }
         div[data-testid="stDataFrame"] {
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
-            background: var(--background-color);
+            border: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
+            background: color-mix(in srgb, var(--background-color) 70%, transparent);
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--text-color) 3%, transparent);
         }
         @keyframes floatUp {
             from {
                 opacity: 0;
-                transform: translateY(12px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 color-mix(in srgb, #10b981 40%, transparent); }
+            70% { box-shadow: 0 0 0 6px color-mix(in srgb, #10b981 0%, transparent); }
+            100% { box-shadow: 0 0 0 0 color-mix(in srgb, #10b981 0%, transparent); }
         }
         @media (max-width: 768px) {
             .main .block-container {
@@ -240,29 +326,37 @@ def inject_custom_css():
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
-            .hero-card,
-            .section-card,
+            .hero-card {
+                padding: 1.25rem;
+                border-radius: 24px;
+            }
+            .section-card {
+                padding: 1.25rem;
+                border-radius: 24px;
+            }
             .summary-card {
-                border-radius: 18px;
+                border-radius: 20px;
+                padding: 1.25rem;
             }
             .hero-title {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
             .summary-value {
-                font-size: 1.35rem;
+                font-size: 1.5rem;
             }
             .hero-badges {
-                gap: 0.45rem;
+                gap: 0.5rem;
             }
             .hero-badge {
                 width: 100%;
                 justify-content: center;
+                padding: 0.5rem;
             }
             .mobile-note {
                 display: block;
             }
             [data-testid="stSidebar"] {
-                min-width: 240px;
+                min-width: 260px;
             }
         }
         </style>
