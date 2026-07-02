@@ -31,20 +31,20 @@ def inject_custom_css():
         """
         <style>
         .stApp {
-            background:
-                radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 24%),
-                radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 28%),
-                linear-gradient(180deg, #f8fbff 0%, #f3f7fb 52%, #eef4f8 100%);
+            background-color: var(--background-color);
+            background-image:
+                radial-gradient(circle at top left, color-mix(in srgb, var(--primary-color) 12%, transparent), transparent 24%),
+                radial-gradient(circle at top right, color-mix(in srgb, var(--primary-color) 8%, transparent), transparent 28%);
         }
         [data-testid="stSidebar"] {
-            background: rgba(255, 255, 255, 0.82);
-            border-right: 1px solid rgba(148, 163, 184, 0.14);
+            background: color-mix(in srgb, var(--secondary-background-color) 85%, transparent);
+            border-right: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
             backdrop-filter: blur(10px);
         }
         [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
         [data-testid="stSidebar"] label,
         [data-testid="stSidebar"] .stRadio label {
-            color: #334155;
+            color: var(--text-color);
         }
         [data-testid="stSidebar"] .stRadio > div {
             gap: 0.3rem;
@@ -54,7 +54,7 @@ def inject_custom_css():
             border-radius: 10px;
         }
         [data-testid="stSidebar"] [role="radiogroup"] label:hover {
-            background: rgba(59, 130, 246, 0.08);
+            background: color-mix(in srgb, var(--primary-color) 8%, transparent);
         }
         .main .block-container {
             padding-top: 2rem;
@@ -62,16 +62,16 @@ def inject_custom_css():
         }
         .hero-card {
             padding: 1.15rem 1.25rem;
-            border: 1px solid rgba(148, 163, 184, 0.14);
+            border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
             border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92));
-            box-shadow: 0 18px 42px rgba(148, 163, 184, 0.16);
+            background: color-mix(in srgb, var(--secondary-background-color) 90%, transparent);
+            box-shadow: 0 18px 42px color-mix(in srgb, var(--text-color) 6%, transparent);
             backdrop-filter: blur(10px);
             margin-bottom: 0.85rem;
             animation: floatUp 0.7s ease-out;
         }
         .hero-kicker {
-            color: #2563eb;
+            color: var(--primary-color);
             font-size: 0.86rem;
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -79,14 +79,15 @@ def inject_custom_css():
             margin-bottom: 0.5rem;
         }
         .hero-title {
-            color: #0f172a;
+            color: var(--text-color);
             font-size: 1.45rem;
             font-weight: 800;
             line-height: 1.15;
             margin: 0;
         }
         .hero-subtitle {
-            color: #cbd5e1;
+            color: var(--text-color);
+            opacity: 0.85;
             font-size: 0.9rem;
             margin-top: 0.45rem;
             margin-bottom: 0;
@@ -103,9 +104,9 @@ def inject_custom_css():
             gap: 0.45rem;
             padding: 0.42rem 0.72rem;
             border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            background: #ffffff;
-            color: #334155;
+            border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
+            background: var(--background-color);
+            color: var(--text-color);
             font-size: 0.78rem;
             font-weight: 600;
         }
@@ -121,9 +122,9 @@ def inject_custom_css():
             overflow: hidden;
             padding: 1.2rem;
             border-radius: 22px;
-            border: 1px solid rgba(148, 163, 184, 0.15);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
-            box-shadow: 0 16px 34px rgba(148, 163, 184, 0.14);
+            border: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
+            background: color-mix(in srgb, var(--secondary-background-color) 90%, transparent);
+            box-shadow: 0 16px 34px color-mix(in srgb, var(--text-color) 5%, transparent);
             min-height: 122px;
             margin-bottom: 0.85rem;
             animation: floatUp 0.85s ease-out;
@@ -136,45 +137,46 @@ def inject_custom_css():
             width: 110px;
             height: 110px;
             border-radius: 999px;
-            background: rgba(59, 130, 246, 0.10);
+            background: color-mix(in srgb, var(--primary-color) 10%, transparent);
             filter: blur(2px);
         }
         .summary-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(148, 163, 184, 0.18);
+            box-shadow: 0 20px 40px color-mix(in srgb, var(--text-color) 8%, transparent);
         }
         .summary-label {
-            color: #64748b;
+            color: var(--text-color);
+            opacity: 0.8;
             font-size: 0.82rem;
             margin-bottom: 0.45rem;
         }
         .summary-value {
-            color: #0f172a;
+            color: var(--text-color);
             font-size: 1.65rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 0.2rem;
         }
         .summary-income {
-            border-color: rgba(34, 197, 94, 0.28);
+            border-color: color-mix(in srgb, #22c55e 35%, transparent);
         }
         .summary-expense {
-            border-color: rgba(248, 113, 113, 0.28);
+            border-color: color-mix(in srgb, #f87171 35%, transparent);
         }
         .summary-balance {
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: color-mix(in srgb, var(--primary-color) 35%, transparent);
         }
         .section-card {
             padding: 1rem;
             border-radius: 24px;
-            border: 1px solid rgba(148, 163, 184, 0.16);
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 14px 34px rgba(148, 163, 184, 0.12);
+            border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
+            background: color-mix(in srgb, var(--secondary-background-color) 80%, transparent);
+            box-shadow: 0 14px 34px color-mix(in srgb, var(--text-color) 4%, transparent);
             height: 100%;
             animation: floatUp 1s ease-out;
         }
         .section-title {
-            color: #0f172a;
+            color: var(--text-color);
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.8rem;
@@ -184,9 +186,9 @@ def inject_custom_css():
             margin-bottom: 0.7rem;
             padding: 0.6rem 0.8rem;
             border-radius: 14px;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.12);
-            color: #2563eb;
+            background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+            color: var(--primary-color);
             font-size: 0.8rem;
         }
         div[data-testid="stForm"] {
@@ -198,7 +200,8 @@ def inject_custom_css():
         div[data-testid="stNumberInput"] input,
         div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
             border-radius: 14px;
-            background: #ffffff;
+            background: var(--background-color);
+            color: var(--text-color);
         }
         div[data-testid="stNumberInput"] button,
         div[data-testid="stFormSubmitButton"] button {
@@ -206,20 +209,20 @@ def inject_custom_css():
         }
         div[data-testid="stFormSubmitButton"] button {
             min-height: 3rem;
-            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            background: var(--primary-color);
             color: white;
             font-weight: 700;
             border: 0;
-            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.28);
+            box-shadow: 0 10px 25px color-mix(in srgb, var(--primary-color) 30%, transparent);
         }
         div[data-testid="stFormSubmitButton"] button:hover {
-            background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+            filter: brightness(1.1);
         }
         div[data-testid="stDataFrame"] {
             border-radius: 18px;
             overflow: hidden;
-            border: 1px solid rgba(148, 163, 184, 0.16);
-            background: white;
+            border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
+            background: var(--background-color);
         }
         @keyframes floatUp {
             from {
