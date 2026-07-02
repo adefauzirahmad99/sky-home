@@ -1,29 +1,31 @@
 import streamlit as st
 from streamlit_navigation_bar import st_navbar
-from streamlit_gsheets import GSheetsConnection
+import requests
 import pandas as pd
 from datetime import datetime
 
 st.set_page_config(page_title="SKY HOME", page_icon="🏠", layout="wide")
 
-# --- KONEKSI DATABASE GOOGLE SHEETS ---
-conn = st.connection("gsheets", type=GSheetsConnection)
+# 🔗 URL API Web App Google Apps Script Anda
+API_URL = "https://script.google.com/macros/s/AKfycbyVFXZf4SGZ1McuyEvWXGGlKMWMYgG0cGU5LwcY2i7GAbaRl0ls5Mbda6AxndtbN1F94A/exec"
 
-# Fungsi untuk mengambil data terbaru dari Google Sheets
+# Fungsi mengambil data dari Google Sheets
 def ambil_data():
     try:
-        # Membaca data dari sheet bernama 'Keuangan'
-        return conn.read(worksheet="Keuangan", ttl="0m")
+        response = requests.get(API_URL)
+        if response.status_code == 200:
+            data = response.json()
+            return pd.DataFrame(data)
     except:
-        # Jika sheet masih kosong / baru dibuat
-        return pd.DataFrame(columns=["Tanggal", "Jenis", "Nominal", "Keterangan"])
+        pass
+    return pd.DataFrame(columns=["Tanggal", "Jenis", "Nominal", "Keterangan"])
 
 # --- SIDEBAR ---
 with st.sidebar:
     st.title("🏠 SKY HOME")
     st.write("Sistem Manajemen Rumah")
     st.markdown("---")
-    st.caption("Status: Terhubung ke Google Sheets 🟢")
+    st.caption("Status: Terhubung via Web App API 🟢")
 
 # --- MENU NAVIGASI ---
 styles = {
@@ -33,34 +35,26 @@ styles = {
 }
 menu_pilihan = st_navbar(["💰 Keuangan", "📦 Stok Barang", "📋 Catatan"], styles=styles)
 
-# --- LOGIKA MENU ---
 if menu_pilihan == "💰 Keuangan":
     st.header("🪙 Menu Keuangan - SKY HOME")
     
-    # 1. Ambil data saat ini dari Google Sheets
     df_keuangan = ambil_data()
-    
-    # Hitung total Pemasukan & Pengeluaran secara otomatis dari Google Sheets
     total_masuk = 0
     total_keluar = 0
     
     if not df_keuangan.empty:
-        # Pastikan kolom Nominal dibaca sebagai angka
         df_keuangan["Nominal"] = pd.to_numeric(df_keuangan["Nominal"], errors='coerce').fillna(0)
         total_masuk = df_keuangan[df_keuangan["Jenis"] == "Pemasukan"]["Nominal"].sum()
         total_keluar = df_keuangan[df_keuangan["Jenis"] == "Pengeluaran"]["Nominal"].sum()
     
     saldo_akhir = total_masuk - total_keluar
     
-    # Tampilkan Ringkasan Berdasarkan Data Google Sheets
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Pemasukan", f"Rp {total_masuk:,.0f}")
     col2.metric("Total Pengeluaran", f"Rp {total_keluar:,.0f}")
     col3.metric("Sisa Saldo", f"Rp {saldo_akhir:,.0f}")
     
     st.markdown("---")
-    
-    # 2. Form Input Data Baru
     col_form, col_tabel = st.columns([1, 2])
     
     with col_form:
@@ -72,33 +66,24 @@ if menu_pilihan == "💰 Keuangan":
             submit = st.form_submit_button("Simpan Transaksi")
             
             if submit and nominal > 0:
-                # Siapkan baris data baru
-                data_baru = pd.DataFrame([{
-                    "Tanggal": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    "Jenis": jenis,
-                    "Nominal": nominal,
-                    "Keterangan": keterangan
-                }])
-                
-                # Gabungkan data lama dengan data baru
-                df_diperbarui = pd.concat([df_keuangan, data_baru], ignore_index=True)
-                
-                # Kirim dan simpan kembali ke Google Sheets
-                conn.update(worksheet="Keuangan", data=df_diperbarui)
-                st.success(f"Berhasil menyimpan {jenis} ke Google Sheets!")
-                st.rerun()
+                payload = {
+                    "tanggal": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "jenis": jenis,
+                    "nominal": nominal,
+                    "keterangan": keterangan
+                }
+                # Kirim data ke Google Sheets via Apps Script
+                res = requests.post(API_URL, json=payload)
+                if res.status_code == 200:
+                    st.success("Berhasil menyimpan data!")
+                    st.rerun()
+                else:
+                    st.error("Gagal mengirim data ke server.")
 
-    # 3. Tampilkan Tabel Data langsung dari Google Sheets
     with col_tabel:
-        st.subheader("📋 Riwayat Transaksi (Google Sheets)")
+        st.subheader("📋 Riwayat Transaksi")
         if not df_keuangan.empty:
-            # Tampilkan tabel dibalik agar data terbaru ada di paling atas
+            # Menampilkan data dari yang paling baru di atas
             st.dataframe(df_keuangan.iloc[::-1], use_container_width=True)
         else:
             st.info("Belum ada riwayat transaksi.")
-
-elif menu_pilihan == "📦 Stok Barang":
-    st.header("📦 Menu Stok Barang")
-
-elif menu_pilihan == "📋 Catatan":
-    st.header("📋 Menu Catatan")
