@@ -1,5 +1,6 @@
 import threading
 from datetime import datetime
+import os
 
 import flet as ft
 import requests
@@ -606,4 +607,5 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8501, host="0.0.0.0")
+    port = int(os.environ.get("PORT", "7860"))
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
